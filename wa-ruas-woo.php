@@ -1,33 +1,14 @@
-
- <?php 
+<?php 
 	/**
-	 * Plugin Name
-	 *
-	 * @package           PluginPackage
-	 * @author            Muhamad Imron
-	 * @copyright         2019 Ruas Digital
-	 * @license           GPL-2.0-or-later
-	 *
-	 * @wordpress-plugin
-	 * Plugin Name:       Ruas Digital - Woocommerce
-	 * Plugin URI:        https://example.com/plugin-name
-	 * Description:       Description of the plugin.
-	 * Version:           1.0.0
-	 * Requires at least: 5.2
-	 * Requires PHP:      7.2
-	 * Author:            Muhamad Imron
-	 * Author URI:        https://example.com
-	 * Text Domain:       plugin-slug
-	 * License:           GPL v2 or later
-	 * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
-	 * Update URI:        https://example.com/my-plugin/
-	 */
-	if(!defined('ABSPATH')){
-		echo "string";
-		exit;
-	}
+* Plugin Name: Ruas Digital - WooCommerce
+* Plugin URI: https://www.Ruasdigital.id/
+* Description: This is the very first plugin I ever created.
+* Version: 1.0
+* Author: Muhamad Imron
+* Author URI: http://yourwebsiteurl.com/
+**/
 
-	add_action('admin_menu', 'test_plugin_setup_menu');
+add_action('admin_menu', 'test_plugin_setup_menu');
  
 	function test_plugin_setup_menu(){
 	    add_menu_page( 'WaRuas', 'WaRuas', 'manage_options', 'wa-ruas', 'test_init' );
@@ -63,11 +44,11 @@
 				}
 				textarea {
 					width:100%;
-					height:10vh
+					height:10vh;
 				}
 			</style>
 			<div style='display:flex; width:100%'>
-			    <form action='admin-post.php' method='post' id='wa-ruas-form' style='width:60%'>
+			    <form action='admin-post.php' method='post' id='wa-ruas-form' style='width:60%;'>
 			        <input type='hidden' name='action' value='init_plugin_form'/>
 			        <input type='hidden' name='custom_nonce' value=' <?php echo $custom_form_nonce ?>'/>
 			        <h3>Pending Payment</h3>
@@ -211,7 +192,6 @@
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'wa_ruas';
 		$charset_collate = $wpdb->get_charset_collate();
-			wp_redirect(admin_url('admin.php?page=wa-ruas'));
 		$sql = "CREATE ";
 		$sql .= "TABLE ";
 		$sql .= "IF NOT EXISTS ";
@@ -245,6 +225,3 @@
 		$data = $wpdb->get_results("SELECT * FROM $table_name");
 		return $data;
 	}
-	
-
-?>
