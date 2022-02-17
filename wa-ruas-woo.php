@@ -29,7 +29,24 @@ add_action('admin_menu', 'test_plugin_setup_menu');
 		$data = get_db_data('wa_ruas');
 		$data = $data[0];
 
+
+		function get_db_webhook($table_name){
+			global $wpdb;
+			$table_name = $wpdb->prefix . $table_name;
+			$sql = "SELECT * FROM {$table_name}";
+			$data = $wpdb->get_results($sql);
+
+			return $data;
+		}	
+		$webhook = get_db_webhook('wc_webhooks');
+
 		echo '<h1>WaRuas</h1>';
+		if(count($webhook) > 0){
+			echo "<p>Sudah Terkoneksi Dengan WaRuas</p>";
+		} else {
+			echo "<p>Belum Terkoneksi Dengan WaRuas</p>";
+
+		}
 		echo '<p>Setting notifikasi Woocommerce</p>';
 	    
 	    if(!empty($data->wc_pending)){
