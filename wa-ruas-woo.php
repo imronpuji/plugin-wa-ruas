@@ -69,15 +69,15 @@ add_action('admin_menu', 'test_plugin_setup_menu');
 			        <input type='hidden' name='action' value='init_plugin_form'/>
 			        <input type='hidden' name='custom_nonce' value=' <?php echo $custom_form_nonce ?>'/>
 			        <h3>Pending Payment</h3>
-			        <textarea name='wc-pending'>$data->wc_pending</textarea> <br>
+			        <textarea style='white-space: pre-wrap;' name='wc-pending'>$data->wc_pending</textarea> <br>
 			        <h3>On Hold</h3>
-			        <textarea name='wc-on-hold'>$data->wc_on_hold</textarea> <br>
+			        <textarea style='white-space: pre-wrap;' name='wc-on-hold'>$data->wc_on_hold</textarea> <br>
 			        <h3>Processing</h3>
-			        <textarea name='wc-processing'>$data->wc_processing</textarea> <br>
+			        <textarea style='white-space: pre-wrap;' name='wc-processing'>$data->wc_processing</textarea> <br>
 			        <h3>Completed</h3>
-			        <textarea name='wc-completed'>$data->wc_completed</textarea> <br>
+			        <textarea style='white-space: pre-wrap;' name='wc-completed'>$data->wc_completed</textarea> <br>
 			        <h3>Cancelled</h3>
-			        <textarea name='wc-cancelled'>$data->wc_cancelled</textarea> <br>
+			        <textarea style='white-space: pre-wrap;' name='wc-cancelled'>$data->wc_cancelled</textarea> <br>
 			      
 			        
 			        <input type='hidden' name='id' value='$data->id'/> <br>
@@ -92,7 +92,6 @@ add_action('admin_menu', 'test_plugin_setup_menu');
 			    	<h5>@invoice : nomor invoice pesanan</h5> 
 			    	<h5>@phone : nomor hp pembeli</h5> 
 			    	<h5>@payment : jenis pembayaran yang dipilih</h5> 
-			    	<h5>@qty : jumlah produk</h5>
 			    	<h5>@total : total pesanan</h5> 
 			    	<h5>@product : nama produk</h5> 
 
@@ -118,19 +117,20 @@ add_action('admin_menu', 'test_plugin_setup_menu');
 			        <input type='hidden' name='custom_nonce' value=' <?php echo $custom_form_nonce ?>'/>
 
 			        <h3>Pending Payment</h3>
-			        <textarea name='wc-pending'></textarea> <br>
-
-			        <h3>Processing</h3>
-			        <textarea name='wc-processing'></textarea> <br>
-
-			        <h3>Completed</h3>
-			        <textarea name='wc-completed'></textarea> <br>
-
-			        <h3>Cancelled</h3>
-			        <textarea name='wc-cancelled'></textarea> <br>
+			        <textarea style='white-space: pre-wrap;' name='wc-pending'></textarea> <br>
 
 			        <h3>On Hold</h3>
-			        <textarea name='wc-on-hold'></textarea> <br>
+			        <textarea style='white-space: pre-wrap;' name='wc-on-hold'></textarea> <br>
+
+			        <h3>Processing</h3>
+			        <textarea style='white-space: pre-wrap;' name='wc-processing'></textarea> <br>
+
+			        <h3>Completed</h3>
+			        <textarea style='white-space: pre-wrap;' name='wc-completed'></textarea> <br>
+
+			        <h3>Cancelled</h3>
+			        <textarea style='white-space: pre-wrap;' name='wc-cancelled'></textarea> <br>
+
 			        <input type='hidden' name='update' value='false'/>
 	        
 			        <button  type='submit'>simpan</button>
@@ -152,11 +152,11 @@ add_action('admin_menu', 'test_plugin_setup_menu');
 	
 	function init_plugin_form(){
 		
-		$wc_pending = sanitize_text_field($_POST['wc-pending']);
-		$wc_processing = sanitize_text_field($_POST['wc-processing']);
-		$wc_on_hold = sanitize_text_field($_POST['wc-on-hold']);
-		$wc_completed = sanitize_text_field($_POST['wc-completed']);
-		$wc_cancelled = sanitize_text_field($_POST['wc-cancelled']);
+		$wc_pending = sanitize_textarea_field($_POST['wc-pending']);
+		$wc_processing = sanitize_textarea_field($_POST['wc-processing']);
+		$wc_on_hold = sanitize_textarea_field($_POST['wc-on-hold']);
+		$wc_completed = sanitize_textarea_field($_POST['wc-completed']);
+		$wc_cancelled = sanitize_textarea_field($_POST['wc-cancelled']);
 		$update = sanitize_text_field($_POST['update']);
 		$id = sanitize_text_field($_POST['id']);
 
