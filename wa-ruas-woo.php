@@ -142,7 +142,6 @@ add_action('admin_menu', 'test_plugin_setup_menu');
 			    	<h5>@invoice : nomor invoice pesanan</h5> 
 			    	<h5>@phone : nomor hp pembeli</h5> 
 			    	<h5>@payment : jenis pembayaran yang dipilih</h5> 
-			    	<h5>@qty : jumlah produk</h5>
 			    	<h5>@total : total pesanan</h5> 
 			    	<h5>@product : nama produk</h5>
 			    </div>
