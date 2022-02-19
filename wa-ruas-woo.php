@@ -96,7 +96,8 @@ add_action('admin_menu', 'test_plugin_setup_menu');
 			    	<h5>@product : nama produk</h5> 
 
 			    </div>
-			</div>";
+			</div>
+			";
 		} else {
 			echo "
 		    <style>
@@ -146,8 +147,65 @@ add_action('admin_menu', 'test_plugin_setup_menu');
 			    	<h5>@product : nama produk</h5>
 			    </div>
 		    </div>
+		    
 		    ";
 		}
+		echo "
+			<style>
+				#wa-ruas {
+					padding: 10px;
+					background: #fff;
+					border: 1px solid #eee;
+					margin: 10px;
+				}
+				textarea {
+					width:100%;
+					height:10vh;
+				}
+			</style>
+			<div style='display:flex; width:100%'>
+			    <form action='admin-post.php' method='post' id='wa-ruas-form' style='width:50%;'>
+			        <input type='hidden' name='action' value='init_plugin_form'/>
+			        <input type='hidden' name='custom_nonce' value=' <?php echo $custom_form_nonce ?>'/>
+			        <h3>Pending Payment</h3>
+			        <textarea style='white-space: pre-wrap;' name='wc-pending'>$data->wc_pending</textarea> <br>
+			      
+			        
+			        <input type='hidden' name='id' value='$data->id'/> <br>
+			        <input type='hidden' name='update' value='update'/>
+					<div id='wa-ruas'></div>
+			        <button  type='submit'>ubah</button>
+			        <br>
+			        <div>
+		                <button id='button'>add input field</button>
+		            </div>
+			    </form>
+			    <div id='wa-ruas-form' style='width:50%'>
+			    	<h3>Sortcode :</h3> 
+			    	<h5>@first_name : nama depan pembeli</h5> 
+			    	<h5>@last_name : nama belakang pembeli</h5> 
+			    	<h5>@invoice : nomor invoice pesanan</h5> 
+			    	<h5>@phone : nomor hp pembeli</h5> 
+			    	<h5>@payment : jenis pembayaran yang dipilih</h5> 
+			    	<h5>@total : total pesanan</h5> 
+			    	<h5>@product : nama produk</h5> 
+
+			    </div>
+			</div>
+		";
+		// jquery cdn add field dinamycally
+		echo "
+			<script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+			<script>
+				jQuery(document).ready(function(){
+					jQuery('#button').click(function(){
+						jQuery('#wa-ruas').append('<textarea style=\"white-space: pre-wrap;\" name=\"wc-pending\"></textarea> <br>');
+					});
+				});
+			</script>
+		";
+		
+		
 	}
 	
 	function init_plugin_form(){
@@ -239,5 +297,8 @@ add_action('admin_menu', 'test_plugin_setup_menu');
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'wa_ruas';
 		$data = $wpdb->get_results("SELECT * FROM $table_name");
+		$data['price_thousan_sep'] = get_option('woocommerce_price_thousand_sep');
+	
+	
 		return $data;
 	}
