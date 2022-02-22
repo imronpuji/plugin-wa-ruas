@@ -619,6 +619,8 @@
 		$sql .= "wc_on_hold text NULL,";
 		$sql .= "wc_completed text NULL,";
 		$sql .= "wc_cancelled text NULL,";
+		$sql .= "wc_refund text NULL,";
+		$sql .= "wc_failed text NULL,";
 		$sql .= "PRIMARY KEY (id)";
 		$sql .= ")";
 		$sql .= $charset_collate;
@@ -673,4 +675,158 @@
 	
 		return $data;
 	}
+	function insert_data_wa_ruas(){
+		function get_db_wa_ruas($table_name){
+			global $wpdb;
+			$table_name = $wpdb->prefix . $table_name;
+			$sql = "SELECT * FROM {$table_name}";
+			$data = $wpdb->get_results($sql);
+
+			return $data;
+		}	
+		$data = get_db_wa_ruas('wa_ruas');
+		if(count($data) == 0){
+			global $wpdb;
+			$table_name = $wpdb->prefix . 'wa_ruas';
+			$data = [
+				'wc_pending' => 'Halo @first_name @last_name,
+
+Terimakasih atas pesanan Anda di @domain.
+No. tagihan: *@invoice*
+Produk: 
+@product
+Jumlah Tagihan: *@total*
+Pilihan pembayaran: *@payment*
+
+Terimakasih.
+
+=== english ===
+
+Hello @first_name @last_name,
+
+Thank you for your order at @domain.
+Invoice number: *@invoice*
+
+Product: 
+@product
+
+Total: *@total*
+Payment method: *@payment*
+
+Thank you.
+				
+',
+				'wc_processing' => 'Halo @first_name @last_name,
+
+Terimakasih atas pembayaran pesanan no. *@invoice* sejumlah *@total*, pesanan Anda akan *diproses*.
+
+Mohon ditunggu.
+
+Terimakasih
+@domain
+
+=== english ===
+Hello @first_name @last_name,
+
+Thank you, we have received your payment *@total*.
+Your order will be *processed*.
+
+Best regards,
+@domain
+				
+',
+				'wc_on_hold' => 'Halo @first_name @last_name,
+
+Terimakasih atas pesanan Anda di @domain.
+No. tagihan: *@invoice*
+Produk: 
+@product
+Jumlah Tagihan: *@total*
+Pilihan pembayaran: *@payment*
+
+Terimakasih.
+
+=== english ===
+
+Hello @first_name @last_name,
+
+Thank you for your order at @domain.
+Invoice number: *@invoice*
+
+Product: 
+@product
+
+Total: *@total*
+Payment method: *@payment*
+
+Thank you.',
+				'wc_completed' => 'Halo @first_name @last_name,
+				
+Terimakasih telah bertransaksi dengan kami.
+
+Salam hangat,
+@domain
+
+===english===
+Hello @first_name @last_name,
+
+Thank you for transacting with us.
+
+Best regards,
+@domain
+				',
+				'wc_cancelled' => 'Halo @first_name @last_name,
+
+Pesanan Anda no. @invoice telah *dibatalkan*.
+Anda dapat melakukan pemesanan ulang di @domain.
+
+Terimakasih,
+@domain
+
+===english===
+
+Hello @first_name @last_name,
+
+Your order no. @invoice has been *canceled*.
+You can reorder at @domain
+
+Best regards,
+@domain',
+				'wc_refund' => 'Halo @first_name @last_name,
+
+Pesanan Anda no. @invoice telah dilakukan *pengembalian dana*.
+
+Terimakasih,
+@domain
+
+===english===
+Hello @first_name @last_name,
+
+Your order no. @invoice has been *refunded*.
+
+Best regards,
+@domain',
+				'wc_failed' => 'Halo @first_name @last_name,
+
+Pesanan Anda no. @invoice *gagal*.
+Anda dapat melakukan pemesanan ulang di @domain.
+
+Terimakasih,
+@domain
+
+===english===
+
+Hello @first_name @last_name,
+
+Your order no. @invoice is just *failed*.
+You can reorder at @domain.
+
+Best regards,
+@domain'
+			];
+			$wpdb->insert($table_name, $data);
+		}
+		
+	}
+	register_activation_hook(__FILE__, 'insert_data_wa_ruas');
 	
