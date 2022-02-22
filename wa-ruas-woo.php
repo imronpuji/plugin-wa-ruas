@@ -255,7 +255,7 @@
 				</style>
 				<div id='container'>
 				<a href='admin.php?page=create-pending-payment'>
-					<button>Buat Konfigurasi</button>						
+					<button>Buat Pengingat</button>						
 				</a>
 				
 				<table id='table-pending'>
@@ -429,7 +429,7 @@
 				</style>
 				<div id='container'>
 				<a href='admin.php?page=create-on-hold-payment'>
-					<button>Buat Konfigurasi</button>						
+					<button>Buat Pengingat</button>						
 				</a>
 				
 				<table id='table-pending'>
