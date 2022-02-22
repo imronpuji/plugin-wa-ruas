@@ -84,7 +84,11 @@
 			        <textarea required style='white-space: pre-wrap;' name='wc-completed'>$data->wc_completed</textarea> <br>
 			        <h3>Cancelled</h3>
 			        <textarea required style='white-space: pre-wrap;' name='wc-cancelled'>$data->wc_cancelled</textarea> <br>
-
+			        <h3>Refund</h3>
+			        <textarea required style='white-space: pre-wrap;' name='wc-refund'>$data->wc_refund</textarea> <br>
+			        <h3>Failed</h3>
+			        <textarea required style='white-space: pre-wrap;' name='wc-failed'>$data->wc_failed</textarea> <br>
+			        
 			      
 			        
 			        <input type='hidden' name='id' value='$data->id'/> <br>
@@ -139,6 +143,11 @@
 
 			        <h3>Cancelled</h3>
 			        <textarea required style='white-space: pre-wrap;' name='wc-cancelled'></textarea> <br>
+
+			        <h3>Refund</h3>
+			        <textarea required style='white-space: pre-wrap;' name='wc-refund'></textarea> <br>
+			        <h3>Failed</h3>
+			        <textarea required style='white-space: pre-wrap;' name='wc-failed'></textarea> <br>
 
 			        <input type='hidden' name='update' value='false'/>
 	        
@@ -524,6 +533,8 @@
 			$wc_on_hold = sanitize_textarea_field($_POST['wc-on-hold']);
 			$wc_completed = sanitize_textarea_field($_POST['wc-completed']);
 			$wc_cancelled = sanitize_textarea_field($_POST['wc-cancelled']);
+			$wc_refund = sanitize_textarea_field($_POST['wc-refund']);
+			$wc_failed = sanitize_textarea_field($_POST['wc-failed']);
 			$update = sanitize_text_field($_POST['update']);
 			$id = sanitize_text_field($_POST['id']);
 	
@@ -535,7 +546,9 @@
 					'wc_processing' => $wc_processing,
 					'wc_on_hold' => $wc_on_hold,
 					'wc_completed' => $wc_completed,
-					'wc_cancelled' => $wc_cancelled
+					'wc_cancelled' => $wc_cancelled,
+					'wc_refund' => $wc_refund,
+					'wc_failed' => $wc_failed,
 				), array( 'id' => $id ), array( '%s', '%s', '%s', '%s', '%s' ), array( '%d' ) );
 				wp_redirect(admin_url('admin.php?page=wa-ruas'));
 			}
@@ -560,7 +573,9 @@
 					'wc_processing' => $wc_processing,
 					'wc_on_hold' => $wc_on_hold,
 					'wc_completed' => $wc_completed,
-					'wc_cancelled' => $wc_cancelled
+					'wc_cancelled' => $wc_cancelled,
+					'wc_refund' => $wc_refund,
+					'wc_failed' => $wc_failed
 				];
 		
 				insert_into_db($table, $data);
