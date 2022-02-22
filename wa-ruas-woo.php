@@ -12,8 +12,9 @@
  
 	function test_plugin_setup_menu(){
 	    add_menu_page( 'WaRuas', 'WaRuas', 'manage_options', 'wa-ruas', 'test_init' );
-	    add_submenu_page( 'wa-ruas', 'wa-ruas-setting', 'Setting Pending Payment', 'manage_options', 'pending-payment', 'pending_payment');
-	    add_submenu_page( 'wa-ruas', 'wa-ruas-setting', 'Setting OnHold Payment', 'manage_options', 'on-hold-payment', 'on_hold_payment');
+	    add_submenu_page( 'wa-ruas', 'wa-ruas-setting', 'Template Pesan', 'manage_options', 'template-pesan', 'test_init');
+	    add_submenu_page( 'wa-ruas', 'wa-ruas-setting', 'Reminder Pending Payment', 'manage_options', 'pending-payment', 'pending_payment');
+	    add_submenu_page( 'wa-ruas', 'wa-ruas-setting', 'Reminder OnHold Payment', 'manage_options', 'on-hold-payment', 'on_hold_payment');
 		add_submenu_page( '', 'Pending Payment', 'Pending Payment', 'manage_options', 'create-pending-payment', 'pending_payment' );
 		add_submenu_page( '', 'OnHold Payment', 'OnHold Payment', 'manage_options', 'create-on-hold-payment', 'on_hold_payment' );
 
@@ -83,6 +84,7 @@
 			        <textarea required style='white-space: pre-wrap;' name='wc-completed'>$data->wc_completed</textarea> <br>
 			        <h3>Cancelled</h3>
 			        <textarea required style='white-space: pre-wrap;' name='wc-cancelled'>$data->wc_cancelled</textarea> <br>
+
 			      
 			        
 			        <input type='hidden' name='id' value='$data->id'/> <br>
@@ -91,7 +93,7 @@
 			        <button  type='submit'>ubah</button>
 			    </form>
 			    <div id='wa-ruas-form' style='width:40%'>
-			    	<h3>Sortcode :</h3> 
+			    	<h3>Shortcode :</h3> 
 			    	<h5>@first_name : nama depan pembeli</h5> 
 			    	<h5>@last_name : nama belakang pembeli</h5> 
 			    	<h5>@invoice : nomor invoice pesanan</h5> 
@@ -99,6 +101,7 @@
 			    	<h5>@payment : jenis pembayaran yang dipilih</h5> 
 			    	<h5>@total : total pesanan</h5> 
 			    	<h5>@product : nama produk</h5> 
+			    	<h5>@domain : nama domain</h5> 
 
 			    </div>
 			</div>
@@ -142,7 +145,7 @@
 			        <button  type='submit'>simpan</button>
 			    </form>
 			    <div id='wa-ruas-form' style='width:40%'>
-			    	<h3>Sortcode :</h3> 
+			    	<h3>Shortcode :</h3> 
 			    	<h5>@first_name : nama depan pembeli</h5> 
 			    	<h5>@last_name : nama belakang pembeli</h5> 
 			    	<h5>@invoice : nomor invoice pesanan</h5> 
@@ -150,6 +153,8 @@
 			    	<h5>@payment : jenis pembayaran yang dipilih</h5> 
 			    	<h5>@total : total pesanan</h5> 
 			    	<h5>@product : nama produk</h5>
+			    	<h5>@domain : nama domain</h5> 
+
 			    </div>
 		    </div>
 		    
