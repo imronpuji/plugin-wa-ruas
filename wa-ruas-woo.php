@@ -277,7 +277,7 @@
 								<button>Delete</button>
 							</a>
 							<a href='admin.php?page=pending-payment&update=$row->id'>
-								<button>Update</button>
+								<button>Edit</button>
 							</a>
 						</td>
 					</tr>
@@ -451,7 +451,7 @@
 								<button>Delete</button>
 							</a>
 							<a href='admin.php?page=on-hold-payment&update=$row->id'>
-								<button>Update</button>
+								<button>Edit</button>
 							</a>
 						</td>
 					</tr>
