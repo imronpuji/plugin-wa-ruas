@@ -293,6 +293,7 @@
 				$table_name = $wpdb->prefix . 'wa_reminder';
 				$id = $_GET['delete'];
 				$page = $_GET['page'];
+				var_dump($page);
 				$wpdb->delete( $table_name, array( 'id' => $id ) );
 				// how to make wp redirect back
 				wp_redirect("admin.php?page=$page");
@@ -466,8 +467,9 @@
 				global $wpdb;
 				$table_name = $wpdb->prefix . 'wa_reminder';
 				$id = $_GET['delete'];
+				$page = $_GET['page'];
 				$wpdb->delete( $table_name, array( 'id' => $id ) );
-				wp_redirect(admin_url('admin.php?page=pending-payment'));
+				wp_redirect(admin_url("admin.php?page=$page"));
 
 			}
 			if(isset($_GET['delete'])){
